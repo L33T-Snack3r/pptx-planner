@@ -2,10 +2,12 @@ import os
 from dotenv import load_dotenv
 from llm.gemini import Gemini_LLM
 from llm.openai import OpenAI_LLM
+from typing import List
+from PIL import Image
 import logging 
 
 logging.basicConfig(level=logging.INFO)
-load_dotenv('local.env')
+load_dotenv('../local.env')
 
 class LLM():
     def __init__(self, provider : str, model : str = None, temperature=0):
@@ -29,3 +31,6 @@ class LLM():
     
     def call(self, query : str):
         return self.llm.call(query)
+    
+    def call_with_images(self, query : str, images : List[Image.Image] | Image.Image):
+        return self.llm.call_with_images(query, images)
