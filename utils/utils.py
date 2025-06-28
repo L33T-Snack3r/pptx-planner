@@ -1,11 +1,16 @@
 import re
 
-def find_text_in_between_tags(text, start_tag, end_tag):
+def find_text_in_between_tags(text, start_tag, end_tag, inclusive=False):
     result = []
     start_pos = text.find(start_tag)
     end_pos = text.find(end_tag)
     while start_pos > -1 and end_pos > -1:
-        text_between_tags = text[start_pos + len(start_tag):end_pos].strip()
+
+        if inclusive:
+            text_between_tags = text[start_pos : end_pos + len(end_tag)].strip()
+        else:
+            text_between_tags = text[start_pos + len(start_tag):end_pos].strip()
+        
         result.append(text_between_tags)
         start_pos = text.find(start_tag, end_pos + len(end_tag))
         end_pos = text.find(end_tag, start_pos)
