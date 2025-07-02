@@ -140,6 +140,7 @@ class Planner():
         return flags
 
     def extract_slide_content(self, slide_content_response : str) -> dict:
+        logger.info("PPTX Planning STEP 4: Extracting slide content...")
 
         flags = self.extract_flags(slide_content_response)
 
@@ -155,6 +156,7 @@ class Planner():
                 template_master.append(f"slide_{slidenum}")
             slidenum += 1
 
+        logger.info("PPTX Planning STEP 4: Slide content extracted!")
         return {'slide_content' : content, 'template_slides' : template_master}
 
 
