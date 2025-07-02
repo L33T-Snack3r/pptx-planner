@@ -10,7 +10,7 @@ class Generator():
         self.rndr = HTMLRenderer()
         self.render_resize_ratio = render_resize_ratio
 
-    def reviewer(html_code : str, html_image : Image.Image, llm : LLM)-> dict:
+    def reviewer(self, html_code : str, html_image : Image.Image, llm : LLM)-> dict:
         slide_review_prompt = textwrap.dedent(
         """
         You are a senior front-end software engineer reviewing a junior engineer's work.
@@ -78,7 +78,8 @@ class Generator():
         {slide_content}
         """
         )
-
+        
+        logger.info("Generating title slide...")
         html_code = \
             find_text_in_between_tags(generator_llm.call(query=title_slide_prompt)['text'], 
                                       start_tag="<!DOCTYPE html>", 
@@ -86,6 +87,7 @@ class Generator():
                                       inclusive=True)
 
         if review:
+            logger.info("Reviewing generated HTML...")
             html_img = self.rndr.renderHTML(html_str=html_code, resize=True, resize_ratio=self.render_resize_ratio)
             review_response = self.reviewer(html_code, html_img, reviewer_llm)
             html_code = review_response['html_code']
@@ -110,12 +112,15 @@ class Generator():
 
         Take into consideration the following points:
         - Make sure to follow a design style that matches the provided example HTML code to maintain consistency across the presentation.
-        - Do not include any info from the title slide that does not belong on any other slide, such as the presenter name, their title, the date and the company logo.
+        - DO NOT include the presenter name, their title, the date and any company logos on this slide. This is to save space.
         - Titles should be aligned to the top left-hand side of the slide
         - The font size, to make sure that text fits on the slide. 
         Titles should be 2.3em, subtitles at around 1.3em and normal text should be around 0.9em.
         If the slide content defined below is only a few key words or short sentences, you can increase the subtitle size up to 1.8, and normal text size up to 1.3.
         - Be creative with the slide design. Try your best to use visual elements to both enhance the message and make the slides visually engaging.
+        - If you are displaying the slide content in a content grid, always set 
+            grid-template-columns: auto auto;
+            grid-template-rows: auto auto;
         - If relevant, use icons.
             
         This slide will become a template master slide which will define the style of the following slides, so design this slide with great care.
@@ -128,6 +133,8 @@ class Generator():
         """
         )
 
+        logger.info("Generating Agenda slide...")
+
         html_code = \
             find_text_in_between_tags(generator_llm.call(query=agenda_slide_prompt)['text'], 
                                       start_tag="<!DOCTYPE html>", 
@@ -135,6 +142,7 @@ class Generator():
                                       inclusive=True)
 
         if review:
+            logger.info("Reviewing generated HTML...")
             html_img = self.rndr.renderHTML(html_str=html_code, resize=True, resize_ratio=self.render_resize_ratio)
             review_response = self.reviewer(html_code, html_img, reviewer_llm)
             html_code = review_response['html_code']
@@ -176,6 +184,7 @@ class Generator():
         """
         )
 
+        logger.info("Generating slide...")
         html_code = \
             find_text_in_between_tags(generator_llm.call(query=slide_prompt)['text'], 
                                       start_tag="<!DOCTYPE html>", 
@@ -183,6 +192,7 @@ class Generator():
                                       inclusive=True)
 
         if review:
+            logger.info("Reviewing generated HTML...")
             html_img = self.rndr.renderHTML(html_str=html_code, resize=True, resize_ratio=self.render_resize_ratio)
             review_response = self.reviewer(html_code, html_img, reviewer_llm)
             html_code = review_response['html_code']
