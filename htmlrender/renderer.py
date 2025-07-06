@@ -4,7 +4,7 @@ from html2image import Html2Image
 from PIL import Image, ImageFile
 
 class HTMLRenderer():
-    def __init__(self, size : tuple = (1280,720)):
+    def __init__(self, size : tuple = (1440, 810)):
         self.hti = Html2Image(size=size)
 
     def renderHTML(self, html_str : str, tmp_filename : str = "html_render.png", resize : bool = False, resize_ratio : float = 0.5) -> ImageFile.ImageFile:
