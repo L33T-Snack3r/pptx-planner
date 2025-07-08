@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Problem: The Business Impact</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      width: 1280px;
+      height: 720px;
+      margin: 0;
+      background-color: #FFFFFF;
+      font-family: 'Roboto', sans-serif;
+      color: #272774; /* navy */
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-number {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #EBC4B4; /* accent2 */
+      color: #272774;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .logo {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+
+    .logo img {
+      height: 60px;
+    }
+
+    .top-right-graphic {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 30%;
+      z-index: 0;
+    }
+
+    .bottom-left-graphic {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 30%;
+      z-index: 0;
+    }
+
+    .content {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      right: 60px;
+      max-width: 1160px;
+      z-index: 1;
+    }
+
+    .title {
+      font-size: 2.5em;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #272774;
+    }
+
+    .point {
+      display: flex;
+      align-items: flex-start;
+      font-size: 1em;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .point i {
+      margin-right: 15px;
+      color: #272774;
+      flex-shrink: 0;
+      padding-top: 4px;
+    }
+
+    .conclusion {
+      margin-top: 30px;
+      font-weight: bold;
+      color: #272774;
+      text-align: center;
+      font-size: 1em;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top right graphic -->
+  <img src="upside_down_logo.png" alt="Top Right Graphic" class="top-right-graphic" />
+
+  <!-- Bottom left graphic -->
+  <img src="bottom_left_graphic.png" alt="Bottom Left Graphic" class="bottom-left-graphic" />
+
+  <!-- Page number -->
+  <div class="page-number">16</div>
+
+  <!-- Slide Content -->
+  <div class="content">
+    <h1 class="title">The Problem: The Business Impact</h1>
+
+    <div class="point">
+      <i class="fas fa-hourglass-half"></i>
+      <p>Estimated 20 hours/week spent by legal and contract management teams searching for specific contract clauses.</p>
+    </div>
+
+    <div class="point">
+      <i class="fas fa-gavel"></i>
+      <p>Potential 15% reduction in legal review time by providing instant access to relevant contract information.</p>
+    </div>
+
+    <div class="point">
+      <i class="fas fa-exclamation-triangle"></i>
+      <p>Risk of $5 million in potential penalties due to missed contract clauses or non-compliance.</p>
+    </div>
+
+    <div class="point">
+      <i class="fas fa-handshake-slash"></i>
+      <p>Delayed deal closures due to slow contract retrieval and review processes.</p>
+    </div>
+
+    <p class="conclusion">
+      This inefficiency directly impacts our ability to accelerate revenue growth, improve risk management, and ensure regulatory compliance.
+    </p>
+  </div>
+
+  <!-- Logo bottom right -->
+  <div class="logo">
+    <img src="logo.png" alt="Logo">
+  </div>
+
+</body>
+</html>

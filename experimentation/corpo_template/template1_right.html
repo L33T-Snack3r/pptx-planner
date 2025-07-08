@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide Template</title>
+  <style>
+    body {
+      width: 1280px;
+      height: 720px;
+      margin: 0;
+      position: relative;
+      background-color: #FFFFFF; /* lt1 */
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .page-number {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #EBC4B4; /* accent2 */
+      color: #272774; /* dk2 */
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .logo {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+
+    .confidential {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      font-size: 12px;
+      color: #000000; /* dk1 */
+    }
+
+    .circle-large {
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border: 2px solid #EBC4B4; /* accent2 */
+      border-radius: 50%;
+      top: 150px;
+      left: 50px;
+    }
+
+    .circle-medium {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border: 2px solid #272774; /* dk2 */
+      border-radius: 50%;
+      top: 50px;
+      left: 300px;
+    }
+
+    .circle-dot {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: #272774; /* dk2 */
+      border-radius: 50%;
+      top: 220px;
+      left: 300px;
+    }
+
+    .circle-small {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border: 2px solid #EBC4B4; /* accent2 */
+      border-radius: 50%;
+      top: 100px;
+      right: 50px;
+    }
+
+    .l-shape {
+      position: absolute;
+      bottom: 80px;
+      left: 450px;
+      width: 50px;
+      height: 50px;
+    }
+
+    .l-shape-inner {
+      position: absolute;
+      background-color: #EBC4B4; /* accent2 */
+      width: 50px;
+      height: 50px;
+      clip-path: polygon(0% 0%, 40% 0%, 40% 60%, 100% 60%, 100% 100%, 0% 100%);
+    }
+
+    .l-shape-outline {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: 2px solid #000000;
+      width: 50px;
+      height: 50px;
+      clip-path: polygon(0% 0%, 40% 0%, 40% 60%, 100% 60%, 100% 100%, 0% 100%);
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-number">#</div>
+
+  <div class="circle-large"></div>
+  <div class="circle-medium"></div>
+  <div class="circle-dot"></div>
+  <div class="circle-small"></div>
+
+  <div class="l-shape">
+    <div class="l-shape-inner"></div>
+    <div class="l-shape-outline"></div>
+  </div>
+
+  <div class="confidential">Classified as Confidential</div>
+  <div class="logo">
+    <img src="logo.png" alt="Logo" height="80"/>
+  </div>
+</body>
+</html>

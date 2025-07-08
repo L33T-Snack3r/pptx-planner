@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Slide: The Problem - Current Challenges</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      width: 1280px;
+      height: 720px;
+      margin: 0;
+      position: relative;
+      background-color: #FFFFFF; /* lt1 */
+      font-family: 'Roboto', sans-serif;
+      overflow: hidden;
+      color: #272774; /* dk2 */
+    }
+
+    .page-number {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #EBC4B4; /* accent2 */
+      color: #272774; /* dk2 */
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .logo {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+
+    .confidential {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      font-size: 12px;
+      color: #000000; /* dk1 */
+    }
+
+    .circle-large {
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border: 2px solid #EBC4B4; /* accent2 */
+      border-radius: 50%;
+      top: 150px;
+      left: 50px;
+    }
+
+    .circle-medium {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border: 2px solid #272774; /* dk2 */
+      border-radius: 50%;
+      top: 50px;
+      left: 300px;
+    }
+
+    .circle-dot {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: #272774; /* dk2 */
+      border-radius: 50%;
+      top: 220px;
+      left: 300px;
+    }
+
+    .circle-small {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border: 2px solid #EBC4B4; /* accent2 */
+      border-radius: 50%;
+      top: 100px;
+      right: 50px;
+    }
+
+    .l-shape {
+      position: absolute;
+      bottom: 80px;
+      left: 450px;
+      width: 50px;
+      height: 50px;
+    }
+
+    .l-shape-inner {
+      position: absolute;
+      background-color: #EBC4B4; /* accent2 */
+      width: 50px;
+      height: 50px;
+      clip-path: polygon(0% 0%, 40% 0%, 40% 60%, 100% 60%, 100% 100%, 0% 100%);
+    }
+
+    .l-shape-outline {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: 2px solid #000000;
+      width: 50px;
+      height: 50px;
+      clip-path: polygon(0% 0%, 40% 0%, 40% 60%, 100% 60%, 100% 100%, 0% 100%);
+      background: transparent;
+    }
+
+    .slide-content {
+      position: absolute;
+      top: 100px;
+      left: 500px;
+      width: 700px;
+      height: 520px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide-title {
+      font-size: 2.3em;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #272774;
+    }
+
+    .split-content {
+      display: flex;
+      gap: 40px;
+      flex-grow: 1;
+    }
+
+    .visual-section, .bullet-points-section {
+      flex: 1;
+      background-color: #F5E2DA; /* lt2 */
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-placeholder {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background: #FFFFFF; /* lt1 */
+      border: 2px solid #272774; /* dk2 */
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .text-overlay {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #272774;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .text-overlay small {
+      font-weight: normal;
+      font-size: 0.8em;
+    }
+
+    .progress-bar-container {
+      width: 80%;
+      background-color: #FFFFFF;
+      border: 1px solid #272774;
+      border-radius: 5px;
+      height: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar {
+      width: 95%;
+      background-color: #272774;
+      height: 100%;
+      border-radius: 5px;
+    }
+
+    .progress-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 0.8em;
+      font-weight: bold;
+      color: #272774;
+    }
+
+    .bullet-points-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .bullet-points-section li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+      font-size: 1em;
+      color: #272774;
+    }
+
+    .bullet-points-section .icon {
+      margin-right: 10px;
+      color: #272774;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Static Template -->
+  <div class="page-number">1</div>
+  <div class="circle-large"></div>
+  <div class="circle-medium"></div>
+  <div class="circle-dot"></div>
+  <div class="circle-small"></div>
+  <div class="l-shape">
+    <div class="l-shape-inner"></div>
+    <div class="l-shape-outline"></div>
+  </div>
+  <div class="confidential">Classified as Confidential</div>
+  <div class="logo">
+    <img src="logo.png" alt="Logo" height="60" />
+  </div>
+
+  <!-- Slide Content -->
+  <div class="slide-content">
+    <h1 class="slide-title">The Problem: Current Challenges</h1>
+    <div class="split-content">
+      <div class="visual-section">
+        <div class="image-placeholder">
+          <div class="text-overlay">
+            <i class="fas fa-frown fa-3x" style="margin-bottom: 10px;"></i><br>
+            Frustrated Employee<br>
+            <small>(Manual Search Overload)</small>
+          </div>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar"></div>
+          <span class="progress-text">Contract Search: 95% (Still Loading...)</span>
+        </div>
+      </div>
+      <div class="bullet-points-section">
+        <ul>
+          <li><i class="fas fa-hourglass-half icon"></i> Time-consuming manual searches across multiple repositories.</li>
+          <li><i class="fas fa-search-minus icon"></i> Keyword limitations: Missed documents due to synonyms, legal jargon, and paraphrasing.</li>
+          <li><i class="fas fa-question-circle icon"></i> Difficulty understanding the context and nuances of complex contract language.</li>
+          <li><i class="fas fa-exclamation-circle icon"></i> Potential for errors and missed obligations due to incomplete or inaccurate search results.</li>
+          <li><i class="fas fa-clock icon"></i> Impact on efficiency, deal closure times, and overall decision-making.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
