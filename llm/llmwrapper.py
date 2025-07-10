@@ -4,10 +4,16 @@ from llm.gemini import Gemini_LLM
 from llm.openai import OpenAI_LLM
 from typing import List
 from PIL import Image
-import logging 
+import logging
 
 logging.basicConfig(level=logging.INFO)
-load_dotenv('../local.env')
+# Load environment variables from local.env file
+# Try multiple paths to handle different working directories
+env_paths = ['local.env', '../local.env', '../../local.env']
+for env_path in env_paths:
+    if os.path.exists(env_path):
+        load_dotenv(env_path)
+        break
 
 class LLM():
     def __init__(self, provider : str, model : str = None, temperature=0):
@@ -17,11 +23,11 @@ class LLM():
             raise Exception(f"{provider.upper()}_API_KEY not found in env variable file")
 
         if provider == "gemini":
-            self.llm = Gemini_LLM(api_key=os.getenv(api_key), model=model, temperature=temperature) if model else \
-                       Gemini_LLM(api_key=os.getenv(api_key), temperature=temperature)
+            self.llm = Gemini_LLM(api_key=api_key, model=model, temperature=temperature) if model else \
+                       Gemini_LLM(api_key=api_key, temperature=temperature)
         elif provider == "openai":
-            self.llm = OpenAI_LLM(api_key=os.getenv(api_key), model=model, temperature=temperature) if model else \
-                       OpenAI_LLM(api_key=os.getenv(api_key), temperature=temperature)
+            self.llm = OpenAI_LLM(api_key=api_key, model=model, temperature=temperature) if model else \
+                       OpenAI_LLM(api_key=api_key, temperature=temperature)
         else:
             raise Exception(f"{provider} is not supported")
         
