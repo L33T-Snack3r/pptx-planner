@@ -3,6 +3,7 @@ from PIL import Image
 from htmlrender.renderer import HTMLRenderer
 from utils.utils import find_text_in_between_tags
 import textwrap
+import time
 from loguru import logger
 
 class Generator():
@@ -10,7 +11,7 @@ class Generator():
         self.rndr = HTMLRenderer()
         self.render_resize_ratio = render_resize_ratio
 
-    def reviewer(self, html_code : str, html_image : Image.Image, llm : LLM)-> dict:
+    def reviewer(self, html_code : str, html_image : Image.Image, llm : LLM, custom_prompt : str = None)-> dict:
         slide_review_prompt = textwrap.dedent(
         """
         You are a senior front-end software engineer reviewing a junior engineer's work.
@@ -35,6 +36,9 @@ class Generator():
         """
         )
 
+        if custom_prompt:
+            slide_review_prompt = custom_prompt
+
         #Sanitizing input html
         html_code = find_text_in_between_tags(html_code, start_tag="<!DOCTYPE html>", end_tag="</html>", inclusive=True)
 
@@ -48,7 +52,7 @@ class Generator():
             return ({"status" : "modified", "html_code" : modified_html})
 
 
-    def generate_title_slide(self, query : str, slide_content : str, generator_llm : LLM, reviewer_llm : LLM, review : bool = True) -> str:
+    def generate_title_slide(self, query : str, slide_content : str, generator_llm : LLM, reviewer_llm : LLM, review : bool = True, custom_prompt : str = None) -> str:
         title_slide_prompt = textwrap.dedent(
         f"""
         You are a tech consultant, and you have been given the following request:
@@ -78,7 +82,10 @@ class Generator():
         {slide_content}
         """
         )
-        
+
+        if custom_prompt:    
+            title_slide_prompt = custom_prompt
+
         logger.info("Generating title slide...")
         html_code = \
             find_text_in_between_tags(generator_llm.call(query=title_slide_prompt)['text'], 
@@ -95,7 +102,7 @@ class Generator():
         return html_code
     
 
-    def generate_agenda_slide(self, query : str, slide_content : str, title_slide_html : str, generator_llm : LLM, reviewer_llm : LLM, review : bool = True) -> str:
+    def generate_agenda_slide(self, query : str, slide_content : str, title_slide_html : str, generator_llm : LLM, reviewer_llm : LLM, review : bool = True, custom_prompt : str = None) -> str:
         agenda_slide_prompt = textwrap.dedent(
         f"""
         You are a tech consultant, and you have been given the following request:
@@ -133,10 +140,17 @@ class Generator():
         """
         )
 
+        if custom_prompt:
+            agenda_slide_prompt = custom_prompt
+
         logger.info("Generating Agenda slide...")
+        starttime = time.time()
+        llm_output = generator_llm.call(query=agenda_slide_prompt)['text']
+        if time.time() - starttime > 120:
+            logger.info(f"LLM output:\n{llm_output}")
 
         html_code = \
-            find_text_in_between_tags(generator_llm.call(query=agenda_slide_prompt)['text'], 
+            find_text_in_between_tags(llm_output, 
                                       start_tag="<!DOCTYPE html>", 
                                       end_tag="</html>", 
                                       inclusive=True)
@@ -150,7 +164,7 @@ class Generator():
         return html_code
 
 
-    def generate_general_slide(self, query : str, slide_content : str, existing_slide_content : dict, generator_llm : LLM, reviewer_llm : LLM, review : bool = True) -> str:
+    def generate_general_slide(self, query : str, slide_content : str, existing_slide_content : dict, generator_llm : LLM, reviewer_llm : LLM, review : bool = True, custom_prompt : str = None) -> str:
         existing_slides = "\n".join([f"{slide['name']} html code:\n```html\n{slide['html']}\n```\n" for slide in existing_slide_content])
         slide_prompt = textwrap.dedent(
         f"""
@@ -185,8 +199,13 @@ class Generator():
         )
 
         logger.info("Generating slide...")
+        starttime = time.time()
+        llm_output = generator_llm.call(query=slide_prompt)['text']
+        if time.time() - starttime > 120:
+            logger.info(f"LLM output:\n{llm_output}")
+
         html_code = \
-            find_text_in_between_tags(generator_llm.call(query=slide_prompt)['text'], 
+            find_text_in_between_tags(llm_output, 
                                       start_tag="<!DOCTYPE html>", 
                                       end_tag="</html>", 
                                       inclusive=True)

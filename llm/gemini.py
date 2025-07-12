@@ -24,7 +24,7 @@ class Gemini_LLM():
 
         return output
 
-    def call_with_images(self, query : str, images : List[Image.Image] | Image.Image):
+    def call_with_images(self, query : str, images : List[Image.Image] | Image.Image, thinking):
         images_list = [images] if isinstance(images, Image.Image) else images
 
         #Convert pillow image to byte array then wrap in typing
@@ -38,7 +38,8 @@ class Gemini_LLM():
             model=self.model,
             contents=payload,
             config=genai.types.GenerateContentConfig(
-                temperature=self.temperature
+                temperature=self.temperature,
+                thinking_config=types.ThinkingConfig(thinking_budget=thinking)
                 )
         )
 
@@ -49,6 +50,9 @@ class Gemini_LLM():
 
     def image_to_byte_array(self, img : Image.Image) -> bytes:
         img_byte_arr = io.BytesIO()
+        if img.mode in ("RGBA", "P"): 
+            img = img.convert("RGB")
+
         img.save(img_byte_arr, format='JPEG')
         img_byte_arr = img_byte_arr.getvalue()
         

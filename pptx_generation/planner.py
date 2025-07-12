@@ -102,6 +102,8 @@ class Planner():
 
             4) Make sure to include the content that should appear on the title slide.
 
+            5) Make sure to include at least one slide with a table. Output this table in markdown.
+            
             If this proposal is successful, you will get a big raise!
 
             IMPORTANT: Make sure to separate the content of each slide with the following markers <Slide X START> and <Slide X END>, where X represents the slide number.

@@ -32,5 +32,5 @@ class LLM():
     def call(self, query : str):
         return self.llm.call(query)
     
-    def call_with_images(self, query : str, images : List[Image.Image] | Image.Image):
-        return self.llm.call_with_images(query, images)
+    def call_with_images(self, query : str, images : List[Image.Image] | Image.Image, thinking=0):
+        return self.llm.call_with_images(query, images, thinking)

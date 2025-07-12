@@ -27,7 +27,7 @@ class OpenAI_LLM():
 
         return output
     
-    def call_with_images(self, query : str, images : List[Image.Image] | Image.Image):
+    def call_with_images(self, query : str, images : List[Image.Image] | Image.Image, thinking):
         images_list = [images] if isinstance(images, Image.Image) else images
 
         payload = [{"type" : "input_image", 
