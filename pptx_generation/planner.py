@@ -37,33 +37,58 @@ class Planner():
         return {'prompt' : brainstorm_prompt, 'response' : brainstorm_response}
 
 
-    def outline(self, query : str, brainstorm_response : str, llm : LLM) -> str:
+    def outline(self, query : str, llm : LLM) -> str:
         outline_prompt = textwrap.dedent(
             f"""
             You are a tech consultant, and you have been given the following request:
 
             "{query}"
 
-            After consulting with a senior software engineer, he has provided you the following approach to build such a system:
-            "{brainstorm_response}"
+            You are an expert in crafting concise, structured presentation outlines. Generate an outline in pure Markdown following this structure **exactly**—no extra words, no commentary:
 
-            It is now time for you to create the proposal slides.
-            Before deciding on what content should go on the slides, 
-            create a well-thought out plan of the structure that this presentation should follow.
+        ### Presentation Name
 
-            Some of the sections you should include are:
-            - Title slide
-            - Executive summary slide
-            - The background of the problem
-            - Your proposed solution and why it will work / benefits of the solution
-            - The infrastructure and tech stack
-            - The required human resources
-            - The timeline
-            - The cost involved in this project
-            - A proper conclusion slide
+        **Slide 1**: Slide 1 Title
+        - Bullet point 1
+        - Bullet point 2
 
-            Depending on the situation, be creative and add in any other sections that you think might add value.
-            If this proposal is successful, you will get a big raise!
+        **Slide 2**: Slide 2 Title
+        - Bullet point 1 
+        - Bullet point 2
+
+        **Slide 3**: Slide 3 Title
+        - Bullet point 1
+        - Bullet point 2
+
+        **Slide 4**: Slide 4 Title 
+        - Bullet point 1  
+        - Bullet point 2
+
+        **Slide 5**: Slide 5 Title
+        - Bullet point 1
+        - Bullet point 2
+
+        ---
+
+        ### Example
+
+        ### Website Redesign Proposal
+
+        **Slide 1**: Title  
+        - Website Redesign Proposal  
+        - Jane Doe, March 2025
+
+        **Slide 2**: Challenge  
+        - Outdated design harming user engagement
+
+        **Slide 3**: Solution  
+        - Modern UI with improved navigation
+
+        **Slide 4**: Next Steps  
+        - Design prototype, user testing
+
+        **Slide 5**: Q&A / Call to Action  
+        - Thank you for your time—questions?
             """
         )
     
